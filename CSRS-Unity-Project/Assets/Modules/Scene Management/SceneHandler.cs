@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-using System.Collections;   // for IEnumerator
-using System.IO;           // for Path functions
+using System.Collections;
+using System.IO;
 
 /// <summary>
 /// SceneHandler is a MonoBehaviour that manages asynchronous scene loading.
@@ -40,7 +40,7 @@ public class SceneHandler : MonoBehaviour
 
     /// <summary>
     /// Coroutine that performs the asynchronous scene loading and unloading.
-    /// Always uses LoadSceneMode.Single to replace the current scene&#8203;:contentReference[oaicite:4]{index=4}.
+    /// Always uses LoadSceneMode.Single to replace the current scene
     /// Provides progress updates and invokes completion events.
     /// </summary>
     private IEnumerator LoadSceneAsyncRoutine(string sceneName, int sceneIndex)
@@ -57,7 +57,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         // If the scene name or index is invalid, LoadSceneAsync will throw an error (scene must be in Build Settings).
-        // Progress is reported between 0.0 and 0.9 while the scene is loading, then 1.0 when done&#8203;:contentReference[oaicite:5]{index=5}.
+        // Progress is reported between 0.0 and 0.9 while the scene is loading, then 1.0 when done
         while (!loadOperation.isDone)
         {
             // Invoke progress event with current progress (clamped 0.0 to 0.9 before completion).
@@ -79,11 +79,11 @@ public class SceneHandler : MonoBehaviour
     /// <returns>An array of scene names as strings.</returns>
     public string[] GetAllScenesInBuild()
     {
-        int sceneCount = SceneManager.sceneCountInBuildSettings;  // total number of scenes in Build Settings&#8203;:contentReference[oaicite:7]{index=7}
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
         string[] sceneNames = new string[sceneCount];
         for (int i = 0; i < sceneCount; i++)
         {
-            // Get the scene path by build index (e.g., "Assets/Scenes/MyScene.unity")&#8203;:contentReference[oaicite:8]{index=8}
+            // Get the scene path by build index (e.g., "Assets/Scenes/MyScene.unity")
             string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
             // Extract just the scene name without extension from the path.
             string sceneName = Path.GetFileNameWithoutExtension(scenePath);
